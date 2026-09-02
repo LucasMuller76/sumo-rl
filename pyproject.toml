@@ -24,8 +24,21 @@ dynamic = ["version"]
 [project.optional-dependencies]
 # Update dependencies in `all` if any are added or removed
 rendering = ["pyvirtualdisplay"]
+# MAPPO (CTDE) experiments in experiments/mappo/ and experiments/train_mappo.py.
+# `libsumo` is optional but strongly recommended: it makes each SUMO worker ~8x
+# faster. Without it the MAPPO code falls back to the plain traci backend.
+marl = [
+   "torch>=2.2",
+   "pyyaml",
+   "tensorboard",
+   "matplotlib",
+]
 all = [
    "pyvirtualdisplay",
+   "torch>=2.2",
+   "pyyaml",
+   "tensorboard",
+   "matplotlib",
 ]
 testing = ["pytest ==7.1.3"]
 

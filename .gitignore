@@ -113,3 +113,7 @@ settings.json
 *.csv
 /logs
 /wandb
+
+# MAPPO experiment runs (checkpoints, plots, per-run logs). Keep the tree local;
+# un-ignore specific summaries with e.g. `git add -f outputs/mappo/**/fixed_time_summary.json`.
+/outputs/mappo/

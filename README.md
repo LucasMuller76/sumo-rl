@@ -200,6 +200,17 @@ Obs: you need to install stable-baselines3 with ```pip install "stable_baselines
 python experiments/dqn_2way-single-intersection.py
 ```
 
+### MAPPO (CTDE) multiagent in the 2x2 / 4x4 grids:
+Custom Multi-Agent PPO with a centralized critic and decentralized execution, plus a
+Fixed-Time baseline and plotting. Install with ```pip install -e ".[marl]"``` (and
+optionally ```pip install libsumo``` for a large speedup); set ```SUMO_HOME```. See
+[experiments/mappo/README.md](experiments/mappo/README.md).
+```bash
+python -m experiments.train_mappo --scenario 2x2 --seed 0 --n-workers 8
+python -m experiments.train_mappo --scenario 4x4 --seed 0 --n-workers 8
+python experiments/plot_mappo.py --scenario 2x2 --runs "outputs/mappo/2x2/mappo_*"
+```
+
 ### Plotting results:
 ```bash
 python outputs/plot.py -f outputs/4x4grid/ppo_conn0_ep2
