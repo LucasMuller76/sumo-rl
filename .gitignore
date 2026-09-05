@@ -114,6 +114,15 @@ settings.json
 /logs
 /wandb
 
+# DQN experiment runs (checkpoints, plots, per-run logs) and local reports.
+/outputs/dqn/
+/experiments/dqn/reports
+
+# Local run artifacts left in the working tree by the sibling `experiments/mappo`
+# branch (untracked here; not part of this branch).
+/outputs/mappo/
+/experiments/mappo/
+
 # MAPPO experiment runs (checkpoints, plots, per-run logs). Keep the tree local;
 # un-ignore specific summaries with e.g. `git add -f outputs/mappo/**/fixed_time_summary.json`.
 /outputs/mappo/
