@@ -24,8 +24,21 @@ dynamic = ["version"]
 [project.optional-dependencies]
 # Update dependencies in `all` if any are added or removed
 rendering = ["pyvirtualdisplay"]
+# Multi-agent DQN experiments in experiments/dqn/ and experiments/train_dqn.py.
+# `libsumo` is optional but strongly recommended: it makes each SUMO worker ~8x
+# faster. Without it the DQN code falls back to the plain traci backend.
+rl = [
+   "torch>=2.2",
+   "pyyaml",
+   "tensorboard",
+   "matplotlib",
+]
 all = [
    "pyvirtualdisplay",
+   "torch>=2.2",
+   "pyyaml",
+   "tensorboard",
+   "matplotlib",
 ]
 testing = ["pytest ==7.1.3"]
 

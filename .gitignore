@@ -113,3 +113,12 @@ settings.json
 *.csv
 /logs
 /wandb
+
+# DQN experiment runs (checkpoints, plots, per-run logs) and local reports.
+/outputs/dqn/
+/experiments/dqn/reports
+
+# Local run artifacts left in the working tree by the sibling `experiments/mappo`
+# branch (untracked here; not part of this branch).
+/outputs/mappo/
+/experiments/mappo/
