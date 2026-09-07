@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Programas semafóricos do cenário "Av. Unisinos" — versão inicial simples.
+
+  Cada tls_k abre e fecha alternadamente de 10 em 10 segundos (ciclo de 20 s).
+
+  Cada semáforo controla 6 links: as 3 faixas da pista EB (Oeste->Leste) e as
+  3 faixas da pista WB (Leste->Oeste) que passam naquele ponto do corredor.
+  Como as duas pistas abrem e fecham juntas, o "state" é uniforme e a ordem
+  exata dos links não importa.
+
+  offset=0 nos três: é a defasagem que você vai querer variar depois, quando
+  for estudar coordenação (onda verde) entre tls_1 -> tls_2 -> tls_3.
+-->
+<tlLogics xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tllogic_file.xsd">
+
+    <tlLogic id="tls_1" type="static" programID="0" offset="0">
+        <phase duration="10" state="GGGGGG"/>  <!-- aberto -->
+        <phase duration="10" state="rrrrrr"/>  <!-- fechado -->
+    </tlLogic>
+
+    <tlLogic id="tls_2" type="static" programID="0" offset="0">
+        <phase duration="10" state="GGGGGG"/>
+        <phase duration="10" state="rrrrrr"/>
+    </tlLogic>
+
+    <tlLogic id="tls_3" type="static" programID="0" offset="0">
+        <phase duration="10" state="GGGGGG"/>
+        <phase duration="10" state="rrrrrr"/>
+    </tlLogic>
+
+</tlLogics>

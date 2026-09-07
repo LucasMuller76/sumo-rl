@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Tipos de via do cenário "Av. Unisinos" (São Leopoldo/RS) — versão simplificada.
+  Somente infraestrutura: nenhuma demanda de tráfego é definida aqui.
+-->
+<types xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/types_file.xsd">
+
+    <!--
+      Cada pista da avenida: 3 faixas de carro, 50 km/h.
+      spreadType="center" centra as 3 faixas na linha dos nós, para as duas
+      pistas ficarem simétricas em relação ao canteiro central.
+    -->
+    <type id="avenida" priority="3" numLanes="3" speed="13.89" spreadType="center"/>
+
+</types>

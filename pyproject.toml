@@ -28,7 +28,13 @@ rendering = ["pyvirtualdisplay"]
 # `libsumo` is optional but strongly recommended: it makes each SUMO worker ~8x
 # faster. Without it the MAPPO code falls back to the plain traci backend.
 marl = [
-# Multi-agent DQN experiments in experiments/dqn/ and experiments/train_dqn.py.
+   "torch>=2.2",
+   "pyyaml",
+   "tensorboard",
+   "matplotlib",
+]
+# Single-file Stable-Baselines3 experiments in experiments/train_{dqn,ppo,qrdqn,a2c,mappo}_{2x2,4x4}.py.
+# Multi-agent DQN experiments in experiments/dqn/ and experiments/train_dqn.py also use this extra.
 # `libsumo` is optional but strongly recommended: it makes each SUMO worker ~8x
 # faster. Without it the DQN code falls back to the plain traci backend.
 rl = [
@@ -36,6 +42,11 @@ rl = [
    "pyyaml",
    "tensorboard",
    "matplotlib",
+   "stable-baselines3>=2.2",
+   "sb3-contrib>=2.2",
+   "supersuit>=3.9",
+   "tqdm",
+   "rich",
 ]
 all = [
    "pyvirtualdisplay",
@@ -43,6 +54,11 @@ all = [
    "pyyaml",
    "tensorboard",
    "matplotlib",
+   "stable-baselines3>=2.2",
+   "sb3-contrib>=2.2",
+   "supersuit>=3.9",
+   "tqdm",
+   "rich",
 ]
 testing = ["pytest ==7.1.3"]
 

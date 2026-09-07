@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Nós do cenário "Av. Unisinos" (versão simplificada).
+
+  DUAS pistas RETAS e paralelas, separadas pelo canteiro central. Cada pista
+  tem sua própria linha de nós: elas NUNCA se encontram, então não existe
+  nenhum "X" ou convergência na geometria.
+
+  Distâncias ao longo do corredor (aproximadas do mapa, total = 900 m):
+
+      início  ->  Sinaleira 1 :  90 m
+      Sin. 1  ->  Sinaleira 2 : 380 m
+      Sin. 2  ->  Sinaleira 3 : 340 m
+      Sin. 3  ->  fim         :  90 m
+
+      pista WB (y=+12), sentido Leste p/ Oeste:
+      w_wb  <=  t1_wb  <=========  t2_wb  <=========  t3_wb  <=  e_wb
+
+      =========== canteiro central (17,6 m entre as pistas) ===========
+
+      pista EB (y=-12), sentido Oeste p/ Leste:
+      w_eb  =>  t1_eb  =========>  t2_eb  =========>  t3_eb  =>  e_eb
+      x=0       x=90               x=470              x=810      x=900
+
+  O atributo tl="tls_k" faz os DOIS nós de cada posição (o da pista de cima e
+  o da pista de baixo) compartilharem UM ÚNICO semáforo. É por isso que
+  traci.trafficlight.getIDList() devolve exatamente ['tls_1','tls_2','tls_3']
+  mesmo havendo 6 nós semaforizados: cada tls_k controla as 3 faixas de um
+  sentido e as 3 faixas do outro.
+-->
+<nodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/nodes_file.xsd">
+
+    <!-- ===== Pista WB (superior, y=+12): Leste p/ Oeste ===== -->
+    <node id="e_wb"  x="900.0" y="12.0" type="priority"/>                    <!-- entrada leste -->
+    <node id="t3_wb" x="810.0" y="12.0" type="traffic_light" tl="tls_3"/>
+    <node id="t2_wb" x="470.0" y="12.0" type="traffic_light" tl="tls_2"/>
+    <node id="t1_wb" x="90.0"  y="12.0" type="traffic_light" tl="tls_1"/>
+    <node id="w_wb"  x="0.0"   y="12.0" type="priority"/>                    <!-- saída oeste -->
+
+    <!-- ===== Pista EB (inferior, y=-12): Oeste p/ Leste ===== -->
+    <node id="w_eb"  x="0.0"   y="-12.0" type="priority"/>                   <!-- entrada oeste -->
+    <node id="t1_eb" x="90.0"  y="-12.0" type="traffic_light" tl="tls_1"/>
+    <node id="t2_eb" x="470.0" y="-12.0" type="traffic_light" tl="tls_2"/>
+    <node id="t3_eb" x="810.0" y="-12.0" type="traffic_light" tl="tls_3"/>
+    <node id="e_eb"  x="900.0" y="-12.0" type="priority"/>                   <!-- saída leste -->
+
+</nodes>

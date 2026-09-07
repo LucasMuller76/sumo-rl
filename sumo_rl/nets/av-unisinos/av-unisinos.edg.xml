@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Arestas do cenário "Av. Unisinos" (versão simplificada).
+
+  Duas pistas RETAS e paralelas, cada uma uma cadeia de arestas one-way com 3
+  faixas. Nenhuma aresta tem "shape": elas são segmentos retos entre nós que
+  estão todos na mesma altura (y=+12 na pista WB, y=-12 na pista EB). Por isso
+  a avenida sai perfeitamente reta no SUMO-GUI.
+
+    Oeste p/ Leste (EB):  w_eb > t1_eb > t2_eb > t3_eb > e_eb
+    Leste p/ Oeste (WB):  e_wb > t3_wb > t2_wb > t1_wb > w_wb
+
+  Não há aresta bidirecional e as duas pistas não se tocam em ponto nenhum:
+  o espaço entre elas é o canteiro central.
+-->
+<edges xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/edges_file.xsd">
+
+    <!-- ===== Sentido Oeste p/ Leste (EB, pista inferior) ===== -->
+    <edge id="EB_w_t1"  from="w_eb"  to="t1_eb" type="avenida"/>
+    <edge id="EB_t1_t2" from="t1_eb" to="t2_eb" type="avenida"/>
+    <edge id="EB_t2_t3" from="t2_eb" to="t3_eb" type="avenida"/>
+    <edge id="EB_t3_e"  from="t3_eb" to="e_eb"  type="avenida"/>
+
+    <!-- ===== Sentido Leste p/ Oeste (WB, pista superior) ===== -->
+    <edge id="WB_e_t3"  from="e_wb"  to="t3_wb" type="avenida"/>
+    <edge id="WB_t3_t2" from="t3_wb" to="t2_wb" type="avenida"/>
+    <edge id="WB_t2_t1" from="t2_wb" to="t1_wb" type="avenida"/>
+    <edge id="WB_t1_w"  from="t1_wb" to="w_wb"  type="avenida"/>
+
+</edges>

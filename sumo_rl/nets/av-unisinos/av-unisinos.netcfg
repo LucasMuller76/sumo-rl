@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Configuração do netconvert para o cenário "Av. Unisinos" (versão simplificada).
+
+  Reconstruir a rede com:
+
+      netconvert -c av-unisinos.netcfg
+
+  (rodar dentro de sumo_rl/nets/av-unisinos/).
+-->
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <node-files value="av-unisinos.nod.xml"/>
+        <edge-files value="av-unisinos.edg.xml"/>
+        <type-files value="av-unisinos.typ.xml"/>
+        <!-- Programas dos 3 semáforos (10 s aberto / 10 s fechado). -->
+        <tllogic-files value="av-unisinos.tll.xml"/>
+    </input>
+
+    <output>
+        <output-file value="av-unisinos.net.xml"/>
+    </output>
+
+    <processing>
+        <no-turnarounds value="true"/>
+        <!-- Mantém os nós dos semáforos: sem isso o netconvert poderia
+             simplificar um nó com uma entrada e uma saída em linha reta. -->
+        <geometry.remove value="false"/>
+    </processing>
+
+</configuration>

@@ -127,3 +127,8 @@ settings.json
 # un-ignore specific summaries with e.g. `git add -f outputs/mappo/**/fixed_time_summary.json`.
 /outputs/mappo/
 /experiments/mappo/reports
+
+# Single-file SB3 experiments (train_{dqn,ppo,qrdqn,a2c,mappo}_{2x2,4x4}.py):
+# checkpoints, plots, per-run logs. Keep the tree local.
+/outputs/2x2/
+/outputs/4x4/
