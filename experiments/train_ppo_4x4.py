@@ -14,6 +14,18 @@ Para um estudo com várias sementes: rode --train com --seed 0,1,2,3,4 e depois
 --evaluate uma vez (agrega todas as sementes). Para comparar com os outros
 algoritmos do mesmo grid, rode `python plot_compare.py --grid 4x4` depois de
 avaliar cada um.
+
+Estudo de recompensas: um arquivo por recompensa, todos com a configuração
+deste arquivo (SPEC e build_model são importados daqui) e a recompensa
+normalizada; saída isolada em outputs/4x4/rewards/<recompensa>/ppo/:
+
+    train_ppo_4x4_reward_diff_waiting_time.py   train_ppo_4x4_reward_average_speed.py
+    train_ppo_4x4_reward_queue.py               train_ppo_4x4_reward_pressure.py
+
+    bash run_reward_study_ppo_4x4.sh            # treina + avalia todas e gera a comparação
+    python plot_rewards.py --grid 4x4 --algo ppo
+
+Alterar SPEC ou build_model aqui muda também o estudo de recompensas.
 """
 
 from __future__ import annotations

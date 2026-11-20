@@ -45,7 +45,7 @@ def build_summary(df: pd.DataFrame) -> pd.DataFrame:
     eles usam as mesmas EVAL_SEEDS em todo experimento, mantemos só a primeira
     cópia para não inflar a média com múltiplos runs idênticos.
     """
-    cols = [c for c, _ in common.EVAL_METRICS]
+    cols = [c for c, _ in common.available_metrics(df)]
     baselines = df[df.controller.isin(["Fixed-Time", "Max-Pressure"])]
     baselines = baselines.drop_duplicates(subset=["controller", "episode"])
     algos = df[~df.controller.isin(["Fixed-Time", "Max-Pressure"])]
@@ -55,9 +55,9 @@ def build_summary(df: pd.DataFrame) -> pd.DataFrame:
 
 def plot_bars(summary: pd.DataFrame, grid: str, out_path: Path) -> None:
     order = sorted(summary.index, key=lambda c: (c not in ("Fixed-Time", "Max-Pressure"), c))
-    fig, axes = plt.subplots(2, 3, figsize=(15, 8))
-    axes = axes.flatten()
-    for ax, (col, label) in zip(axes, common.EVAL_METRICS):
+    metrics = [(c, label) for c, label in common.EVAL_METRICS if (c, "mean") in summary.columns]
+    fig, axes = common.metric_grid(len(metrics))
+    for ax, (col, label) in zip(axes, metrics):
         means = summary[(col, "mean")].reindex(order)
         stds = summary[(col, "std")].reindex(order).fillna(0.0)
         ax.bar(order, means, yerr=stds, capsize=3)
@@ -65,7 +65,6 @@ def plot_bars(summary: pd.DataFrame, grid: str, out_path: Path) -> None:
         ax.set_title(label)
         ax.tick_params(axis="x", rotation=30)
         ax.grid(axis="y", alpha=0.25)
-    axes[-1].axis("off")
     fig.suptitle(f"Comparação entre algoritmos — grid {grid}", fontsize=15)
     plt.tight_layout()
     plt.savefig(out_path, dpi=200)
